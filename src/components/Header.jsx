@@ -1,70 +1,48 @@
 import { useState } from "react";
+import "../css/Header.css";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full h-20 bg-white/80 backdrop-blur-md shadow-sm fixed top-0 z-50 flex items-center">
-      <div className="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+    <header className="header">
+      <div className="header-content">
 
-        {/* LOGO + TITLE */}
-        <div className="relative flex items-center">
-
-          {/* BIG FLOATING LOGO (slightly higher now) */}
-          <img
-            src="/logo-clear.png"
-            alt="ClearFlow Logo"
-            className="h-40 w-auto absolute -top-16 left-0"
-          />
-
-          {/* Spacing so text doesn't overlap the logo */}
-          <div className="pl-44">
-            <h1 className="text-xl md:text-2xl font-bold text-blue-700 leading-tight">
-              ClearFlow
-              <span className="text-gray-700"> Roof & Gutter</span>
-            </h1>
-          </div>
+        {/* LOGO */}
+        <div className="header-left">
+          <img src="/logo-clear.png" alt="Logo" className="header-logo" />
         </div>
 
-        {/* DESKTOP NAVIGATION */}
-        <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
-          <a href="#about" className="hover:text-blue-600">About</a>
-          <a href="#services" className="hover:text-blue-600">Services</a>
-          <a href="#gallery" className="hover:text-blue-600">Gallery</a>
+        {/* MOBILE CENTER BOOK BUTTON */}
+        <div className="mobile-book-center mobile-only">
+          <a href="#book" className="mobile-only-bookbtn">Book Now</a>
+        </div>
+
+        {/* DESKTOP NAV */}
+        <nav className="nav-desktop">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
         </nav>
 
-        {/* DESKTOP BUTTON */}
-        <a
-          href="#book"
-          className="hidden md:block px-5 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
-        >
+        {/* DESKTOP BOOK NOW */}
+        <a href="#book" className="book-btn desktop-only">
           Book Now
         </a>
 
-        {/* MOBILE MENU BUTTON */}
-        <button
-          className="md:hidden text-3xl"
-          onClick={() => setOpen(!open)}
-        >
+        {/* HAMBURGER */}
+        <button className="hamburger mobile-only" onClick={() => setOpen(!open)}>
           ☰
         </button>
       </div>
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden bg-white shadow-sm mt-2">
-          <nav className="flex flex-col text-gray-800 font-medium px-6 pb-4">
-            <a href="#about" className="py-2" onClick={() => setOpen(false)}>About</a>
-            <a href="#services" className="py-2" onClick={() => setOpen(false)}>Services</a>
-            <a href="#gallery" className="py-2" onClick={() => setOpen(false)}>Gallery</a>
-            <a
-              href="#book"
-              className="mt-3 px-5 py-2 bg-blue-600 text-white rounded-lg text-center"
-              onClick={() => setOpen(false)}
-            >
-              Book Now
-            </a>
-          </nav>
+        <div className="mobile-menu">
+          <a href="#about" onClick={() => setOpen(false)}>About</a>
+          <a href="#services" onClick={() => setOpen(false)}>Services</a>
+          <a href="#gallery" onClick={() => setOpen(false)}>Gallery</a>
+          <a href="#book" className="mobile-book-btn" onClick={() => setOpen(false)}>Book Now</a>
         </div>
       )}
     </header>

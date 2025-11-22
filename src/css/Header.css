@@ -1,0 +1,158 @@
+/* MAIN HEADER BAR */
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  background: white;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* INNER CONTENT */
+.header-content {
+  max-width: 1200px;
+  height: 80px;
+  margin: 0 auto;
+  padding: 0 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.header-logo {
+  height: 150px;        /* Increased size */
+  width: auto;
+  object-fit: contain;
+  transform: translateY(2px); /* small vertical adjustment */
+}
+
+
+/* DESKTOP NAVIGATION */
+.nav-desktop {
+  display: flex;
+  gap: 30px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.nav-desktop a {
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-desktop a:hover {
+  color: #1a3f8b;
+}
+
+/* BOOK NOW BUTTON (DESKTOP) */
+.book-btn {
+  padding: 10px 18px;
+  background: #1a3f8b;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* HAMBURGER BUTTON (Mobile only) */
+.hamburger {
+  font-size: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  background: #fff;
+  padding: 15px 22px;
+  border-bottom: 1px solid #ddd;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 12px 0;
+  color: #777;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.mobile-menu a:hover {
+  color: #282626;
+}
+
+.mobile-book-btn {
+  background: #1a3f8b;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* RESPONSIVE RULES */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: inline-block;
+}
+
+@media (max-width: 780px) {
+  .nav-desktop {
+    display: none;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .header-logo {
+    height: 150px;
+  }
+}
+
+@media (max-width: 780px) {
+  .header-content {
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .header-left {
+    flex: 1;             /* push logo left */
+  }
+
+  .mobile-book-center {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* center Book Now */
+  }
+
+  .hamburger {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* keep hamburger right */
+  }
+
+  .mobile-only-bookbtn {
+    display: block;
+    padding: 10px 18px;
+    background: #1a3f8b;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+
+  /* Hide desktop book button on mobile */
+  .desktop-only {
+    display: none;
+  }
+}
