@@ -1,1 +1,114 @@
 @import "tailwindcss";
+
+
+
+/* =========================
+   HERO BACKGROUND BASE
+   ========================= */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(25px);
+  opacity: 0.55;
+  animation: heroZoom 22s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Slow Zoom Loop */
+@keyframes heroZoom {
+  0%, 100% { transform: scale(1.05); }
+  50% { transform: scale(1.18); }
+}
+
+/* =========================
+   PARALLAX SCROLL EFFECT
+   ========================= */
+.hero-parallax {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+/* =========================
+   MOVING CLOUDS LAYER
+   ========================= */
+.hero-clouds {
+  position: absolute;
+  inset: 0;
+  background-image: url('/clouds.png'); /* Add your cloud PNG for realism */
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+  animation: cloudMove 55s linear infinite;
+}
+
+@keyframes cloudMove {
+  0% { transform: translateX(-8%); }
+  100% { transform: translateX(8%); }
+}
+
+/* =========================
+   LIGHT RAYS LAYER
+   ========================= */
+.hero-rays {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left,
+      rgba(255,255,255,0.28) 0%,
+      rgba(255,255,255,0.05) 40%,
+      transparent 70%);
+  mix-blend-mode: screen;
+  animation: rayPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes rayPulse {
+  0% { opacity: 0.15; transform: scale(1); }
+  100% { opacity: 0.35; transform: scale(1.2); }
+}
+
+/* =========================
+   VIGNETTE EDGES
+   ========================= */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle,
+      transparent 60%,
+      rgba(0,0,0,0.45) 100%);
+}
+
+/* =========================
+   MASCOT WATERMARK
+   ========================= */
+.hero-watermark {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 260px;
+  opacity: 0.20;
+  filter: blur(1px);
+  transform: rotate(-3deg);
+  animation: floatWM 14s ease-in-out infinite;
+}
+
+@keyframes floatWM {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-10px) rotate(-3deg); }
+}
+
+/* =========================
+   OPTIONAL BRISBANE SKYLINE (faded)
+   ========================= */
+.hero-skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.10;
+  mix-blend-mode: overlay;
+}
