@@ -1,0 +1,64 @@
+.offer-wrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.offer-chest {
+  width: 120px;
+  height: auto;
+  animation: chestOpenClose 3s infinite ease-in-out,
+             glowPulse 3s infinite ease-in-out;
+  transform-origin: center bottom;
+}
+
+/* Chest opening + closing motion */
+@keyframes chestOpenClose {
+  0% {
+    transform: scale(0.8) rotate(-2deg);
+    filter: brightness(0.8);
+  }
+  25% {
+    transform: scale(1.1) rotate(0deg);
+    filter: brightness(1.2);
+  }
+  50% {
+    transform: scale(1.25) rotate(1deg);
+    filter: brightness(1.4);
+  }
+  75% {
+    transform: scale(1.1) rotate(0deg);
+    filter: brightness(1.1);
+  }
+  100% {
+    transform: scale(0.8) rotate(-2deg);
+    filter: brightness(0.8);
+  }
+}
+
+/* Glow effect like treasure light getting brighter */
+@keyframes glowPulse {
+  0% {
+    filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1));
+  }
+  100% {
+    filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0.4));
+  }
+}
+
+/* Mobile version */
+@media (max-width: 500px) {
+  .offer-wrapper {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .offer-chest {
+    width: 80px;
+  }
+}

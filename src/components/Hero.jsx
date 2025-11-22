@@ -50,11 +50,12 @@ export default function Hero() {
         </p>
 
         <a
-          href="#book"
-          className="inline-block mt-8 px-8 py-3 bg-white text-blue-700 font-semibold rounded-lg shadow hover:bg-gray-100 transition"
-        >
-          Get a Free Quote
-        </a>
+  href="#book"
+  className="inline-block mt-2 px-8 py-3 bg-[#1a3f8b] text-white font-semibold rounded-lg shadow hover:bg-[#16356f] transition"
+>
+  Get a Free Quote
+</a>
+
       </div>
     </section>
   );
