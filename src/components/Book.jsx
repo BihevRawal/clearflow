@@ -1,8 +1,11 @@
 import { useState } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
+
+emailjs.init("t8dz5ZRkrVDoFKGn0");
 
 export default function Book() {
   const [open, setOpen] = useState(false);
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -13,29 +16,27 @@ export default function Book() {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    const templateParams = {
+      name: form.name,
+      phone: form.phone,
+      address: form.address,
+      message: form.message,
+    };
+
     emailjs
-      .send(
-        "service_6jg51nv",    // Your Service ID
-        "template_f2j5hzg",   // Your Template ID
-        {
-          name: form.name,
-          phone: form.phone,
-          address: form.address,
-          message: form.message,
-        },
-        "t8dz5ZRkrVDoFKGn0"    // Your Public Key
-      )
+      .send("service_a1e0bjo", "template_f2vhsfn", templateParams)
       .then(
         () => {
           alert("Quote request sent! We'll contact you soon.");
           setOpen(false);
-          setForm({ name: "", phone: "", address: "", message: "" });
         },
-        () => {
+        (error) => {
+          console.log("EMAILJS ERROR DETAILS:", error);
           alert("Something went wrong. Try again later.");
         }
       );
   };
+
 
   return (
     <section
@@ -47,18 +48,14 @@ export default function Book() {
         Fast, friendly and reliable gutter & roof cleaning across Brisbane.
       </p>
 
-      {/* Buttons */}
       <div className="flex justify-center gap-6 mt-10 flex-wrap">
-
-        {/* CALL NOW BUTTON */}
         <a
-          href="tel:0400000000"
+          href="tel:0404057541"
           className="px-10 py-4 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition text-lg"
         >
           📞 Call Now
         </a>
 
-        {/* GET QUOTE BUTTON */}
         <button
           onClick={() => setOpen(true)}
           className="px-10 py-4 bg-green-600 text-white font-semibold rounded-lg shadow-lg hover:bg-green-700 transition text-lg"
@@ -67,12 +64,9 @@ export default function Book() {
         </button>
       </div>
 
-      {/* QUOTE FORM MODAL */}
       {open && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-white p-8 rounded-2xl w-full max-w-md shadow-2xl relative animate-fadeIn">
-
-            {/* Close button */}
             <button
               onClick={() => setOpen(false)}
               className="absolute top-3 right-3 text-2xl text-gray-500 hover:text-gray-700"
@@ -89,35 +83,35 @@ export default function Book() {
                 type="text"
                 placeholder="Full Name"
                 required
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="w-full p-3 border rounded-lg"
                 value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
               />
 
               <input
                 type="tel"
                 placeholder="Phone Number"
                 required
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                className="w-full p-3 border rounded-lg"
                 value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
               />
 
               <input
                 type="text"
                 placeholder="Address / Suburb"
                 required
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                onChange={(e) => setForm({ ...form, address: e.target.value })}
+                className="w-full p-3 border rounded-lg"
                 value={form.address}
+                onChange={(e) => setForm({ ...form, address: e.target.value })}
               />
 
               <textarea
                 placeholder="Details (optional)"
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 border rounded-lg"
                 rows="4"
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
                 value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
               />
 
               <button
