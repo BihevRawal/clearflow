@@ -6,6 +6,7 @@ import Gallery from "./components/Gallery";
 import Book from "./components/Book";
 import Footer from "./components/Footer";
 import Offer from "./Offer";
+import Reviews from "./components/Reviews";
 
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         <Services />
         <Gallery />
         <Book />
+        <Reviews />
         <Footer />
       </main>
     </div>

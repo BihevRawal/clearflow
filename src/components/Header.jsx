@@ -23,6 +23,8 @@ export default function Header() {
           <a href="#about">About</a>
           <a href="#services">Services</a>
           <a href="#gallery">Gallery</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#reviews" className="nav-highlight">Claim Discount</a>
         </nav>
 
         {/* DESKTOP BOOK NOW */}
@@ -31,7 +33,10 @@ export default function Header() {
         </a>
 
         {/* HAMBURGER */}
-        <button className="hamburger mobile-only" onClick={() => setOpen(!open)}>
+        <button
+          className="hamburger mobile-only"
+          onClick={() => setOpen(!open)}
+        >
           ☰
         </button>
       </div>
@@ -42,7 +47,21 @@ export default function Header() {
           <a href="#about" onClick={() => setOpen(false)}>About</a>
           <a href="#services" onClick={() => setOpen(false)}>Services</a>
           <a href="#gallery" onClick={() => setOpen(false)}>Gallery</a>
-          <a href="#book" className="mobile-book-btn" onClick={() => setOpen(false)}>Book Now</a>
+          <a href="#reviews" onClick={() => setOpen(false)}>Reviews</a>
+          <a
+            href="#discount"
+            className="mobile-highlight"
+            onClick={() => setOpen(false)}
+          >
+            Claim Discount
+          </a>
+          <a
+            href="#book"
+            className="mobile-book-btn"
+            onClick={() => setOpen(false)}
+          >
+            Book Now
+          </a>
         </div>
       )}
     </header>

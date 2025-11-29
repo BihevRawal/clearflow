@@ -28,7 +28,6 @@
   transform: translateY(2px); /* small vertical adjustment */
 }
 
-
 /* DESKTOP NAVIGATION */
 .nav-desktop {
   display: flex;
@@ -44,6 +43,16 @@
 
 .nav-desktop a:hover {
   color: #1a3f8b;
+}
+
+/* Highlighted nav item (Claim Discount) */
+.nav-highlight {
+  color: #d97706;
+  font-weight: 600;
+}
+
+.nav-highlight:hover {
+  color: #b45309;
 }
 
 /* BOOK NOW BUTTON (DESKTOP) */
@@ -81,6 +90,12 @@
 
 .mobile-menu a:hover {
   color: #282626;
+}
+
+/* Highlight in mobile menu */
+.mobile-highlight {
+  color: #d97706;
+  font-weight: 600;
 }
 
 .mobile-book-btn {
