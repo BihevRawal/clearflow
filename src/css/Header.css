@@ -13,7 +13,10 @@
   max-width: 1200px;
   height: 80px;
   margin: 0 auto;
-  padding: 0 22px;
+
+  /* MOBILE = px-6 */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 
   display: flex;
   align-items: center;
@@ -22,10 +25,10 @@
 
 /* LOGO */
 .header-logo {
-  height: 150px;        /* Increased size */
+  height: 150px;
   width: auto;
   object-fit: contain;
-  transform: translateY(2px); /* small vertical adjustment */
+  transform: translateY(2px);
 }
 
 /* DESKTOP NAVIGATION */
@@ -45,7 +48,7 @@
   color: #1a3f8b;
 }
 
-/* Highlighted nav item (Claim Discount) */
+/* Highlighted nav item */
 .nav-highlight {
   color: #d97706;
   font-weight: 600;
@@ -55,7 +58,7 @@
   color: #b45309;
 }
 
-/* BOOK NOW BUTTON (DESKTOP) */
+/* DESKTOP BOOK NOW */
 .book-btn {
   padding: 10px 18px;
   background: #1a3f8b;
@@ -65,7 +68,7 @@
   font-weight: 600;
 }
 
-/* HAMBURGER BUTTON (Mobile only) */
+/* HAMBURGER BUTTON */
 .hamburger {
   font-size: 32px;
   background: none;
@@ -92,7 +95,6 @@
   color: #282626;
 }
 
-/* Highlight in mobile menu */
 .mobile-highlight {
   color: #d97706;
   font-weight: 600;
@@ -107,7 +109,6 @@
   margin-top: 10px;
 }
 
-/* RESPONSIVE RULES */
 .mobile-only {
   display: none;
 }
@@ -116,6 +117,27 @@
   display: inline-block;
 }
 
+/* -----------------------------------------------------
+   RESPONSIVE RULES
+------------------------------------------------------ */
+
+/* TABLET – px-12 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header-content {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* DESKTOP – px-24 */
+@media (min-width: 1024px) {
+  .header-content {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+/* MOBILE */
 @media (max-width: 780px) {
   .nav-desktop {
     display: none;
@@ -132,28 +154,26 @@
   .header-logo {
     height: 150px;
   }
-}
 
-@media (max-width: 780px) {
   .header-content {
     justify-content: space-between;
     gap: 10px;
   }
 
   .header-left {
-    flex: 1;             /* push logo left */
+    flex: 1;
   }
 
   .mobile-book-center {
     flex: 1;
     display: flex;
-    justify-content: center; /* center Book Now */
+    justify-content: center;
   }
 
   .hamburger {
     flex: 1;
     display: flex;
-    justify-content: flex-end; /* keep hamburger right */
+    justify-content: flex-end;
   }
 
   .mobile-only-bookbtn {
@@ -164,10 +184,5 @@
     font-weight: 600;
     border-radius: 8px;
     text-decoration: none;
-  }
-
-  /* Hide desktop book button on mobile */
-  .desktop-only {
-    display: none;
   }
 }

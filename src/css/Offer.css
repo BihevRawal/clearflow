@@ -1,31 +1,38 @@
-/* ===== WRAPPER: fixed in bottom-right ===== */
-
+/* =========================================
+   FIXED OFFER WRAPPER – bottom right corner
+   ========================================= */
 .offer-wrapper {
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 9999;
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  text-decoration: none;
+
   cursor: pointer;
+  text-decoration: none;
 }
 
-/* ===== CIRCLE IMAGE (flash-offer) ===== */
-
+/* =========================================
+   FLASHING CIRCLE ICON
+   ========================================= */
 .offer-circle {
   width: 120px;
   height: auto;
+
+  position: relative;
+  z-index: 2;
+
   transform-origin: center bottom;
+
   animation:
     chestOpenClose 3s infinite ease-in-out,
     glowPulse 3s infinite ease-in-out;
-  position: relative;
-  z-index: 2; /* sits above the pill where they overlap */
 }
 
-/* STOP animation when hovering or when the pill is active */
+/* Stop animation on hover OR when activated (mobile tap) */
 .offer-wrapper:hover .offer-circle,
 .offer-wrapper-active .offer-circle {
   animation: none !important;
@@ -33,7 +40,7 @@
   filter: brightness(1) !important;
 }
 
-/* Circle opening + closing style motion */
+/* Opening / closing effect */
 @keyframes chestOpenClose {
   0% {
     transform: scale(0.8) rotate(-2deg);
@@ -57,7 +64,7 @@
   }
 }
 
-/* Glow pulse */
+/* Golden glow pulse */
 @keyframes glowPulse {
   0% {
     filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0.4));
@@ -70,17 +77,18 @@
   }
 }
 
-/* ===== HORIZONTAL PILL COMING OUT OF THE CIRCLE ===== */
-
+/* =========================================
+   SLIDING PILL (expands from the circle)
+   ========================================= */
 .offer-pill {
   position: relative;
   z-index: 1;
 
-  /* Sit to the left, tucked slightly under the circle */
-  margin-right: -40px; /* overlap so the circle cuts into the pill */
+  margin-right: -40px; /* circle overlap */
 
   padding: 10px 16px;
   border-radius: 999px;
+
   background: linear-gradient(90deg, #0f172a, #1d4ed8);
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
   color: #e5e7eb;
@@ -89,9 +97,9 @@
   flex-direction: column;
   gap: 2px;
   max-width: 260px;
-  white-space: nowrap; /* keep it as a horizontal bar */
+  white-space: nowrap;
 
-  /* start collapsed behind the circle */
+  /* Start hidden */
   transform-origin: right center;
   transform: scaleX(0);
   opacity: 0;
@@ -112,22 +120,23 @@
   opacity: 0.92;
 }
 
-/* Hover (desktop): pill slides out from the circle */
+/* Hover expand (desktop) */
 .offer-wrapper:hover .offer-pill {
   transform: scaleX(1);
   opacity: 1;
   pointer-events: auto;
 }
 
-/* Mobile tap / click: wrapper-active class from JS */
+/* Tap expand (mobile JS adds class) */
 .offer-wrapper-active .offer-pill {
   transform: scaleX(1);
   opacity: 1;
   pointer-events: auto;
 }
 
-/* ===== MOBILE TWEAKS ===== */
-
+/* =========================================
+   MOBILE / SMALL DEVICES
+   ========================================= */
 @media (max-width: 500px) {
   .offer-wrapper {
     bottom: 12px;
@@ -150,5 +159,19 @@
 
   .offer-pill-sub {
     font-size: 0.7rem;
+  }
+}
+
+/* =========================================
+   TABLET TWEAKS (better scaling)
+   ========================================= */
+@media (min-width: 501px) and (max-width: 900px) {
+  .offer-circle {
+    width: 100px;
+  }
+
+  .offer-pill {
+    margin-right: -32px;
+    max-width: 240px;
   }
 }

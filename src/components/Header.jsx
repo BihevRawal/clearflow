@@ -11,7 +11,7 @@ export default function Header() {
         {/* LOGO */}
         <div className="header-left">
           <a href="#top">     {/* <-- Added wrapper */}
-            <img src="/logo-clear.png" alt="Logo" className="header-logo" />
+            <img src="/logo-clear.png" alt="clearflow Logo" className="header-logo" />
           </a>
         </div>
 

@@ -1,5 +1,12 @@
 .services-section {
-  padding: 80px 20px;
+  /* Section spacing: py-20 */
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  /* Mobile horizontal padding: px-6 */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
   background: #f7f9fc;
 }
 
@@ -141,5 +148,21 @@
 @media (max-width: 480px) {
   .svc-card {
     border-radius: 16px;
+  }
+}
+
+/* TABLET (px-12) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .services-section {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* DESKTOP (px-24) */
+@media (min-width: 1024px) {
+  .services-section {
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
 }

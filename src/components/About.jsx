@@ -6,30 +6,35 @@ const riskSlides = [
     description:
       "Blocked gutters force water back under your roofline, soaking ceilings, walls and insulation. One storm can turn a small blockage into a very expensive leak.",
     image: "/gallery/about gallery/risk-overflowing-gutter.jpg",
+    alt:"Overflowing gutter during heavy rain on a brisbane home"
   },
   {
     title: "Rotten fascia & sagging gutters",
     description:
       "Constantly full gutters stay wet, slowly rotting the timber behind them. Sagging, rusty gutters eventually snap and fall — often needing full replacement.",
     image: "/gallery/about gallery/risk-rotten-fascia.jpg",
+    alt: "risk of rotten fascia in brisbane home"
   },
   {
     title: "Mould, damp & pests",
     description:
       "Hidden moisture from roof leaks creates the perfect home for mould, cockroaches and mosquitoes. You don’t see it straight away — you feel it later in your health.",
     image: "/gallery/about gallery/risk-mould-inside.jpg",
+    alt: "risk of mould inside Brisbane home"
   },
   {
     title: "Water around foundations & driveways",
     description:
       "When gutters overflow for months, water pools around the base of your home, cracking concrete, shifting soil and damaging paths, driveways and foundations.",
     image: "/gallery/about gallery/risk-foundation-water.jpg",
+    alt:"risk of gathering water on foundation and driveway in Brisbane home"
   },
   {
     title: "Dry leaf build-up increases fire risk",
     description:
       "Dry leaves sitting in gutters and on roofs can ignite quickly in the wrong conditions. A simple clean can dramatically reduce that risk.",
     image: "/gallery/about gallery/risk-bushfire-gutter.jpg",
+    alt: "risk of bushfire because of dry leaves gathered on roof of brisbane home"
   },
 ];
 

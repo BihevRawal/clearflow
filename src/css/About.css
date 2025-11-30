@@ -1,8 +1,14 @@
 /* ABOUT – RISK SLIDER STYLES */
 
 .risk-slider-wrapper {
-  margin-top: 1.75rem;
   position: relative;
+  /* Section spacing: py-20 equivalent */
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  /* Horizontal padding: px-6 (mobile default) */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .risk-slider {
@@ -74,8 +80,14 @@
   opacity: 0.95;
 }
 
-/* Larger screens – make cards a bit bigger */
+/* Larger screens – make cards a bit bigger + spacing updates */
 @media (min-width: 768px) {
+  /* Tablet: px-12 equivalent */
+  .risk-slider-wrapper {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
   .risk-slider {
     padding-inline: 0.25rem;
   }
@@ -95,6 +107,12 @@
 }
 
 @media (min-width: 1024px) {
+  /* Desktop: px-24 equivalent */
+  .risk-slider-wrapper {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+
   .risk-slide {
     flex-basis: 380px;
     height: 250px;

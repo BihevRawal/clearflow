@@ -1,0 +1,94 @@
+/* FOOTER – UPDATED SPACING + RESPONSIVE PADDING */
+
+.footer {
+  background: #0f172a;
+  color: #d1d5db;
+
+  /* Section spacing – consistent with py-20 */
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  /* Mobile default: px-6 */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Ensures perfect centering */
+}
+
+/* Center the logo wrapper */
+.footer-logo-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-logo {
+  height: 180px;
+  width: auto;
+  margin-bottom: 0.5rem;
+}
+
+.footer-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.footer-subtext {
+  opacity: 0.7;
+  margin-top: 0.3rem;
+}
+
+.footer-socials {
+  margin-top: 1.8rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-socials img {
+  width: 34px;
+  height: 34px;
+  opacity: 0.85;
+  transition: 0.2s;
+  filter: drop-shadow(0 0 3px rgba(0,0,0,0.4));
+  cursor: pointer;
+}
+
+.footer-socials img:hover {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.footer-copy {
+  font-size: 0.9rem;
+  opacity: 0.5;
+  margin-top: 2rem;
+}
+
+/* TABLET – px-12 */
+@media (min-width: 768px) {
+  .footer {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* DESKTOP – px-24 */
+@media (min-width: 1024px) {
+  .footer {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}

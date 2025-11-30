@@ -1,0 +1,81 @@
+/* Fixed at top-right, just under header */
+.floating-top-container {
+  position: fixed;
+  top: 95px;          /* adjust this to sit just under your header (e.g. 70px / 90px) */
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Toggle button (always visible) */
+.floating-top-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #2563eb; /* brand blue */
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-top-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+}
+
+/* Share icon inside button */
+.share-icon {
+  width: 26px;
+  height: 26px;
+  filter: brightness(1000%);
+  transition: transform 0.3s ease;
+}
+
+.share-icon.rotate {
+  transform: rotate(45deg);
+}
+
+/* Icons container – initially collapsed */
+.floating-top-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: max-height 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* When open: expand DOWNWARDS */
+.floating-top-icons.show {
+  max-height: 400px; /* enough to show all icons */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.floating-top-icons img {
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.floating-top-icons img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}

@@ -1,5 +1,12 @@
 .reviews-section {
-  padding: 4rem 1.5rem;
+  /* Section spacing – align with py-20 */
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  /* MOBILE horizontal padding = px-6 */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
   background: #f7f8fc;
 }
 
@@ -185,7 +192,7 @@
   /* Compact, pretty inputs */
   .review-input,
   .review-input.large {
-    flex: 0 0 auto;          /* ⬅ stop stretching vertically */
+    flex: 0 0 auto;
     width: 100%;
     border-radius: 12px;
     min-height: 46px;
@@ -340,5 +347,25 @@
 @media (max-width: 480px) {
   .discount-modal {
     padding: 1.5rem 1.2rem 1.4rem;
+  }
+}
+
+/* =====================================
+   TABLET & DESKTOP – HORIZONTAL PADDING
+   ===================================== */
+
+/* TABLET (px-12) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .reviews-section {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* DESKTOP (px-24) */
+@media (min-width: 1024px) {
+  .reviews-section {
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
 }
