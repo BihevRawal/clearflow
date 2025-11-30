@@ -10,7 +10,9 @@ export default function Header() {
 
         {/* LOGO */}
         <div className="header-left">
-          <img src="/logo-clear.png" alt="Logo" className="header-logo" />
+          <a href="#top">     {/* <-- Added wrapper */}
+            <img src="/logo-clear.png" alt="Logo" className="header-logo" />
+          </a>
         </div>
 
         {/* MOBILE CENTER BOOK BUTTON */}

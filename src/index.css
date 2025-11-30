@@ -112,3 +112,7 @@
   opacity: 0.10;
   mix-blend-mode: overlay;
 }
+
+html {
+  scroll-behavior: smooth;
+}

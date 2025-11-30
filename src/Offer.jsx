@@ -30,7 +30,7 @@ export default function Offer() {
       <div className="offer-pill">
         <span className="offer-pill-main">Fast Roof &amp; Gutter Quote</span>
         <span className="offer-pill-sub">
-          Tap here to claim your offer →
+          ask us for your OFFERS →
         </span>
       </div>
 
