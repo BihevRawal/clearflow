@@ -5,82 +5,107 @@ export default function Services() {
   const items = [
     {
       title: "Gutter Cleaning",
-      short: "Full gutter & downpipe cleaning.",
-      features: ["Leaf removal", "Downpipe flushing", "Debris clearing"],
+      icon: "💧",
+      badge: "Core Service",
+      short: "Full gutter & downpipe clean to stop overflow.",
+      features: ["Leaf & sludge removal", "Downpipe flushing", "Debris clearing"],
       long:
-        "Our gutter cleaning service removes leaves, sludge, and blockages from your gutters and downpipes. Prevent overflow, water damage, mould, and foundation issues. Includes free roof inspection.",
+        "Our gutter cleaning removes leaves, sludge and hidden blockages. Prevents overflow, leaks, mould, foundation issues — and includes a free roof check.",
     },
     {
       title: "Roof Debris Removal",
-      short: "Remove leaves & branches from roof.",
-      features: ["Safe roof access", "Valley cleaning", "Moss & debris removal"],
+      icon: "🌿",
+      badge: "Damage Prevention",
+      short: "Clears leaves & branches from roof surfaces.",
+      features: ["Safe roof access", "Valley & ridge cleaning", "Moss removal"],
       long:
-        "Leaves and branches on your roof block water flow and cause long-term structural damage. We clear all roof valleys, ridges, and drainage pathways using safe ladder techniques.",
+        "Leaves and branches trap moisture and block drainage. We safely clear roof valleys and ridges to prevent leaks and structural damage.",
     },
     {
       title: "Gutter Guard Installation",
-      short: "Reduce cleaning frequency.",
-      features: ["Mesh guards", "Bushfire-rated guards", "Custom fit"],
+      icon: "🛡️",
+      badge: "Maintenance Saver",
+      short: "Quality guards to keep gutters clear longer.",
+      features: ["Aluminium & poly mesh", "Bushfire-rated options", "Custom fitted"],
       long:
-        "We install premium-quality gutter guards designed for Australian roofs. Prevent blockages, extend gutter life, and reduce maintenance costs. Available in aluminium & poly mesh.",
+        "Premium gutter guards reduce blockages, extend gutter life and greatly reduce how often gutters need cleaning.",
     },
     {
       title: "Free Roof Check",
-      short: "Check tiles, cracks, flashing.",
-      features: ["Tile inspection", "Drainage check", "Photo report"],
+      icon: "🔍",
+      badge: "Included",
+      short: "Quick roof health check while we’re there.",
+      features: ["Tiles checked", "Flashing inspection", "Photo explanation"],
       long:
-        "Every job includes a free roof inspection where we check for broken tiles, loose flashing, clogged drains, and signs of water entry. We provide a simple explanation + recommendations.",
+        "We check for early signs of leaks, cracked tiles, loose flashing and rust issues and send you basic photos if needed.",
     },
     {
       title: "Pressure Washing",
-      short: "Make surfaces look brand new.",
-      features: ["Driveways", "Paths", "Patios", "Decks"],
+      icon: "🧽",
+      badge: "Add-On",
+      short: "Make surfaces look almost new again.",
+      features: ["Driveways", "Paths", "Patios & decks"],
       long:
-        "High-pressure cleaning removes dirt, mould, oil stains, and built-up grime from your outdoor surfaces. We clean concrete, pavers, patios, retaining walls, fences, and decks.",
+        "High-pressure cleaning removes deep grime, mould and stains from concrete, pavers, decks and fences.",
     },
     {
       title: "Carpet Deep Cleaning",
-      short: "Steam clean + stain removal.",
-      features: ["Pet stain removal", "Deep steam clean", "Odour treatment"],
+      icon: "🏠",
+      badge: "Interior Care",
+      short: "Deep steam clean & stain removal.",
+      features: ["Pet stain removal", "Hot water extraction", "Odour treatment"],
       long:
-        "We use hot water extraction to deep-clean carpets, remove stains, kill bacteria, and refresh your home. Safe for pets & kids. Fast-drying solutions available.",
+        "Deep steam cleaning kills bacteria, removes stains and refreshes carpets — great for families and pet owners.",
     },
   ];
 
-  const [flipped, setFlipped] = useState(null);
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (i) => {
+    setOpenIndex(openIndex === i ? null : i);
+  };
 
   return (
     <section id="services" className="services-section">
-      <h2 className="services-title">Our Services</h2>
+
+      <div className="services-header">
+        <h2 className="services-title">Our Services</h2>
+        <p className="services-subtitle">
+          Everything we do protects your home <span>before damage becomes expensive.</span>
+        </p>
+      </div>
 
       <div className="services-grid">
-        {items.map((s, i) => (
-          <div
-            key={i}
-            className={`service-card ${flipped === i ? "flipped" : ""}`}
-            onClick={() => setFlipped(flipped === i ? null : i)}
-          >
-            {/* FRONT */}
-            <div className="card-face card-front">
-              <h3 className="card-title">{s.title}</h3>
-              <p className="card-short">{s.short}</p>
+        {items.map((item, i) => (
+          <div key={i} className={`svc-card ${openIndex === i ? "open" : ""}`}>
+            
+            {/* TOP SECTION (always visible) */}
+            <div className="svc-top" onClick={() => toggle(i)}>
+              <div className="svc-icon">{item.icon}</div>
 
-              <ul className="card-features">
-                {s.features.map((f, index) => (
-                  <li key={index}>• {f}</li>
+              <div className="svc-header">
+                <h3>{item.title}</h3>
+                <span className="svc-badge">{item.badge}</span>
+              </div>
+
+              <p className="svc-short">{item.short}</p>
+
+              <ul className="svc-features">
+                {item.features.map((f, idx) => (
+                  <li key={idx}>{f}</li>
                 ))}
               </ul>
 
-              <span className="click-hint">Tap to learn more ⤵</span>
+              <span className="svc-toggle">
+                {openIndex === i ? "Tap to close ▲" : "Tap to learn more ▼"}
+              </span>
             </div>
 
-            {/* BACK */}
-            <div className="card-face card-back">
-              <h3 className="card-title">{s.title}</h3>
+            {/* EXPANDING BACK PANEL */}
+            <div className="svc-bottom">
+              <p className="svc-long">{item.long}</p>
 
-              <p className="card-long">{s.long}</p>
-
-              <a href="#book" className="card-btn">
+              <a href="#book" className="svc-btn">
                 Get a Quote
               </a>
             </div>

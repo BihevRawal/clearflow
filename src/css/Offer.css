@@ -1,44 +1,63 @@
+/* ===== WRAPPER: fixed in bottom-right ===== */
+
 .offer-wrapper {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 24px;
+  right: 24px;
   z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-decoration: none;
   cursor: pointer;
 }
 
-.offer-chest {
+/* ===== CIRCLE IMAGE (flash-offer) ===== */
+
+.offer-circle {
   width: 120px;
   height: auto;
-  animation: chestOpenClose 3s infinite ease-in-out,
-             glowPulse 3s infinite ease-in-out;
   transform-origin: center bottom;
+  animation:
+    chestOpenClose 3s infinite ease-in-out,
+    glowPulse 3s infinite ease-in-out;
+  position: relative;
+  z-index: 2; /* sits above the pill where they overlap */
 }
 
-/* Chest opening + closing motion */
+/* STOP animation when hovering or when the pill is active */
+.offer-wrapper:hover .offer-circle,
+.offer-wrapper-active .offer-circle {
+  animation: none !important;
+  transform: scale(1) rotate(0deg) !important;
+  filter: brightness(1) !important;
+}
+
+/* Circle opening + closing style motion */
 @keyframes chestOpenClose {
   0% {
     transform: scale(0.8) rotate(-2deg);
-    filter: brightness(0.8);
+    filter: brightness(0.9);
   }
   25% {
-    transform: scale(1.1) rotate(0deg);
-    filter: brightness(1.2);
+    transform: scale(1.05) rotate(0deg);
+    filter: brightness(1.1);
   }
   50% {
-    transform: scale(1.25) rotate(1deg);
-    filter: brightness(1.4);
+    transform: scale(1.15) rotate(1deg);
+    filter: brightness(1.25);
   }
   75% {
-    transform: scale(1.1) rotate(0deg);
-    filter: brightness(1.1);
+    transform: scale(1.05) rotate(0deg);
+    filter: brightness(1.05);
   }
   100% {
     transform: scale(0.8) rotate(-2deg);
-    filter: brightness(0.8);
+    filter: brightness(0.9);
   }
 }
 
-/* Glow effect like treasure light getting brighter */
+/* Glow pulse */
 @keyframes glowPulse {
   0% {
     filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0.4));
@@ -51,14 +70,85 @@
   }
 }
 
-/* Mobile version */
+/* ===== HORIZONTAL PILL COMING OUT OF THE CIRCLE ===== */
+
+.offer-pill {
+  position: relative;
+  z-index: 1;
+
+  /* Sit to the left, tucked slightly under the circle */
+  margin-right: -40px; /* overlap so the circle cuts into the pill */
+
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #0f172a, #1d4ed8);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
+  color: #e5e7eb;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 260px;
+  white-space: nowrap; /* keep it as a horizontal bar */
+
+  /* start collapsed behind the circle */
+  transform-origin: right center;
+  transform: scaleX(0);
+  opacity: 0;
+  pointer-events: none;
+
+  transition:
+    transform 0.22s ease-out,
+    opacity 0.22s ease-out;
+}
+
+.offer-pill-main {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.offer-pill-sub {
+  font-size: 0.75rem;
+  opacity: 0.92;
+}
+
+/* Hover (desktop): pill slides out from the circle */
+.offer-wrapper:hover .offer-pill {
+  transform: scaleX(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mobile tap / click: wrapper-active class from JS */
+.offer-wrapper-active .offer-pill {
+  transform: scaleX(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== MOBILE TWEAKS ===== */
+
 @media (max-width: 500px) {
   .offer-wrapper {
-    bottom: 10px;
-    right: 10px;
+    bottom: 12px;
+    right: 12px;
   }
 
-  .offer-chest {
+  .offer-circle {
     width: 80px;
+  }
+
+  .offer-pill {
+    margin-right: -26px;
+    padding: 8px 12px;
+    max-width: 220px;
+  }
+
+  .offer-pill-main {
+    font-size: 0.78rem;
+  }
+
+  .offer-pill-sub {
+    font-size: 0.7rem;
   }
 }

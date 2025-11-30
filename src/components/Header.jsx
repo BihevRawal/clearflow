@@ -49,7 +49,7 @@ export default function Header() {
           <a href="#gallery" onClick={() => setOpen(false)}>Gallery</a>
           <a href="#reviews" onClick={() => setOpen(false)}>Reviews</a>
           <a
-            href="#discount"
+            href="#reviews"
             className="mobile-highlight"
             onClick={() => setOpen(false)}
           >
