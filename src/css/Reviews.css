@@ -16,7 +16,7 @@
   text-align: left;
 }
 
-/* Top form row */
+/* Top form row (desktop / tablet) */
 .review-form {
   display: flex;
   flex-wrap: wrap;
@@ -31,6 +31,7 @@
   border-radius: 999px;
   border: 1px solid #ccd2e0;
   font-size: 0.95rem;
+  box-sizing: border-box;
 }
 
 .review-input.large {
@@ -125,8 +126,6 @@
   font-size: 0.95rem;
   color: #333a4f;
   margin-bottom: 0.6rem;
-
-  /* prevent overflow */
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -169,30 +168,52 @@
   font-size: 0.95rem;
 }
 
-/* Mobile tweaks */
+/* ========== MOBILE TWEAKS ========== */
 @media (max-width: 600px) {
+  /* Make the whole form a clean card */
   .review-form {
     flex-direction: column;
     align-items: stretch;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 1.2rem 1rem;
+    box-shadow: 0 10px 24px rgba(18, 48, 104, 0.1);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
   }
 
+  /* Compact, pretty inputs */
   .review-input,
-  .review-input.large,
-  .review-submit-btn {
+  .review-input.large {
+    flex: 0 0 auto;          /* ⬅ stop stretching vertically */
     width: 100%;
     border-radius: 12px;
+    min-height: 46px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.95rem;
   }
 
+  /* Button full-width but not huge */
+  .review-submit-btn {
+    width: 100%;
+    border-radius: 999px;
+    padding: 0.8rem 1rem;
+    margin-top: 0.3rem;
+  }
+
+  /* Stars centred */
   .rating-picker {
     justify-content: center;
+    margin: 0.1rem 0 0.4rem;
   }
 
+  /* Slider: more space for cards, no arrows (swipe instead) */
   .reviews-slider {
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 0.5rem;
   }
 
   .slider-arrow {
-    display: none; /* swipe instead on mobile */
+    display: none;
   }
 }
 
