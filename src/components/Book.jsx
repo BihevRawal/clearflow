@@ -1,6 +1,10 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
+/* 🔥 FIREBASE */
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase"; // adjust path if needed
+
 emailjs.init("t8dz5ZRkrVDoFKGn0");
 
 export default function Book() {
@@ -22,7 +26,7 @@ export default function Book() {
   };
 
   const handleCallNow = () => {
-    showToast("success", "Calling ClearFlow…");
+    showToast("success", "Calling GutterFlow…");
     setTimeout(() => {
       window.location.href = "tel:0404057541";
     }, 400);
@@ -30,22 +34,46 @@ export default function Book() {
 
   const openQuoteModal = () => setOpen(true);
 
+  /* ---------------------------
+     SAVE JOB + SEND EMAIL
+  --------------------------- */
   const sendEmail = async (e) => {
     e.preventDefault();
     if (loading) return;
 
     setLoading(true);
 
-    const templateParams = { ...form };
-
-    setOpen(false);
-    setForm({ name: "", phone: "", address: "", message: "" });
-
     try {
-      await emailjs.send("service_a1e0bjo", "template_f2vhsfn", templateParams);
+      /* SAVE JOB TO FIREBASE */
+      await addDoc(collection(db, "jobs"), {
+        name: form.name,
+        phone: form.phone,
+        address: form.address,
+        message: form.message,
+        status: "assigned",
+        createdAt: new Date(),
+      });
+
+      /* SEND EMAIL */
+      await emailjs.send(
+        "service_a1e0bjo",
+        "template_f2vhsfn",
+        form
+      );
+
       showToast("success", "Quote request sent! We'll contact you soon.");
+
+      /* RESET */
+      setOpen(false);
+      setForm({
+        name: "",
+        phone: "",
+        address: "",
+        message: "",
+      });
+
     } catch (error) {
-      console.log("EMAILJS ERROR:", error);
+      console.log("ERROR:", error);
       showToast("error", "Something went wrong. Please try again shortly.");
     } finally {
       setLoading(false);
@@ -80,7 +108,7 @@ export default function Book() {
         </div>
       </section>
 
-      {/* Floating Button – Desktop center, Mobile bottom-left */}
+      {/* Floating Button */}
       <button
         type="button"
         onClick={openQuoteModal}
@@ -93,10 +121,8 @@ export default function Book() {
           bg-emerald-600 text-white text-sm md:text-base font-semibold
           shadow-xl hover:bg-emerald-700 transition
 
-          /* Desktop + tablet */
           bottom-0 mb-3 left-1/2 -translate-x-1/2
 
-          /* Mobile bottom-left */
           max-[639px]:left-3 
           max-[639px]:-translate-x-0
           max-[639px]:right-auto
@@ -108,12 +134,11 @@ export default function Book() {
         <span className="sm:hidden">Enquiry</span>
       </button>
 
-      {/* Modal WITH SUPER-HIGH Z-INDEX */}
+      {/* MODAL */}
       {open && (
-        <div className="fixed inset-0 bg-black/60 flex items-start justify-center p-4 pt-20 z-[99999] pointer-events-auto">
-          <div className="bg-white p-8 rounded-2xl w-full max-w-md shadow-2xl relative animate-fadeIn mt-6 z-[100000]">
-            
-            {/* CLOSE BUTTON (highest element) */}
+        <div className="fixed inset-0 bg-black/60 flex items-start justify-center p-4 pt-20 z-[99999]">
+          <div className="bg-white p-8 rounded-2xl w-full max-w-md shadow-2xl relative mt-6 z-[100000]">
+
             <button
               onClick={() => setOpen(false)}
               className="absolute top-3 right-3 text-2xl text-gray-500 hover:text-gray-700 z-[100001]"
@@ -126,13 +151,16 @@ export default function Book() {
             </h3>
 
             <form onSubmit={sendEmail} className="space-y-4">
+
               <input
                 type="text"
                 placeholder="Full Name"
                 required
                 className="w-full p-3 border rounded-lg"
                 value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                onChange={(e) =>
+                  setForm({ ...form, name: e.target.value })
+                }
               />
 
               <input
@@ -141,7 +169,9 @@ export default function Book() {
                 required
                 className="w-full p-3 border rounded-lg"
                 value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                onChange={(e) =>
+                  setForm({ ...form, phone: e.target.value })
+                }
               />
 
               <input
@@ -166,6 +196,7 @@ export default function Book() {
               />
 
               <div className="pt-2 space-y-2">
+
                 <button
                   type="submit"
                   disabled={loading}
@@ -188,12 +219,13 @@ export default function Book() {
                   📞 Call Now
                 </button>
               </div>
+
             </form>
           </div>
         </div>
       )}
 
-      {/* Toast – also above everything */}
+      {/* TOAST */}
       {toast && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[100002] px-4">
           <div
@@ -213,7 +245,9 @@ export default function Book() {
               {toast.type === "success" ? "✓" : "!"}
             </div>
 
-            <p className="text-sm text-gray-800 text-left">{toast.message}</p>
+            <p className="text-sm text-gray-800 text-left">
+              {toast.message}
+            </p>
 
             <button
               onClick={() => setToast(null)}
