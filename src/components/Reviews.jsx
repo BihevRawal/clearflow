@@ -3,11 +3,12 @@ import "../css/Reviews.css";
 
 export default function Reviews() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");     // NEW
-  const [phone, setPhone] = useState("");     // NEW
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [rating, setRating] = useState(5);
   const [text, setText] = useState("");
   const [loadingSubmit, setLoadingSubmit] = useState(false);
+
   const [reviews, setReviews] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(true);
 
@@ -19,7 +20,7 @@ export default function Reviews() {
   const [checkingCode, setCheckingCode] = useState(false);
   const [discountResult, setDiscountResult] = useState(null);
 
-  // Fetch approved reviews from our API route
+  /* FETCH APPROVED REVIEWS */
   useEffect(() => {
     async function fetchReviews() {
       try {
@@ -35,10 +36,11 @@ export default function Reviews() {
     fetchReviews();
   }, []);
 
+  /* SUBMIT REVIEW */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name.trim() || !text.trim() || !email.trim()) {
+    if (!name.trim() || !email.trim() || !text.trim()) {
       alert("Please enter your name, email and review.");
       return;
     }
@@ -49,7 +51,7 @@ export default function Reviews() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: name.trim(),
+          customer_name: name.trim(), // ✅ FIXED (was `name`)
           email: email.trim(),
           phone: phone.trim(),
           rating: Number(rating),
@@ -75,6 +77,7 @@ export default function Reviews() {
     }
   };
 
+  /* SLIDER CONTROLS */
   const scrollLeft = () => {
     if (!sliderRef.current) return;
     sliderRef.current.scrollBy({ left: -300, behavior: "smooth" });
@@ -85,6 +88,7 @@ export default function Reviews() {
     sliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
   };
 
+  /* STAR RENDERER */
   const renderStars = (n) => {
     const filled = "★".repeat(n || 0);
     const empty = "☆".repeat(5 - (n || 0));
@@ -96,6 +100,7 @@ export default function Reviews() {
     );
   };
 
+  /* DISCOUNT */
   const openDiscountModal = () => {
     setDiscountResult(null);
     setDiscountCode("");
@@ -127,14 +132,14 @@ export default function Reviews() {
           ok: false,
           message:
             data.message ||
-            "❌ Invalid code. Please double-check the code and try again.",
+            "❌ Invalid code. Please double-check and try again.",
         });
       }
     } catch (err) {
       console.error(err);
       setDiscountResult({
         ok: false,
-        message: "Something went wrong. Please try again in a moment.",
+        message: "Something went wrong. Please try again shortly.",
       });
     } finally {
       setCheckingCode(false);
@@ -146,7 +151,7 @@ export default function Reviews() {
       <div className="reviews-inner">
         <h2 className="reviews-title">Reviews</h2>
 
-        {/* Write review row */}
+        {/* REVIEW FORM */}
         <form className="review-form" onSubmit={handleSubmit}>
           <input
             className="review-input"
@@ -172,21 +177,16 @@ export default function Reviews() {
           />
 
           <div className="rating-picker">
-            {Array.from({ length: 5 }, (_, i) => {
-              const starValue = i + 1;
-              return (
-                <button
-                  type="button"
-                  key={starValue}
-                  className={
-                    starValue <= rating ? "star-btn active" : "star-btn"
-                  }
-                  onClick={() => setRating(starValue)}
-                >
-                  ★
-                </button>
-              );
-            })}
+            {[1, 2, 3, 4, 5].map((n) => (
+              <button
+                type="button"
+                key={n}
+                className={n <= rating ? "star-btn active" : "star-btn"}
+                onClick={() => setRating(n)}
+              >
+                ★
+              </button>
+            ))}
           </div>
 
           <input
@@ -205,7 +205,7 @@ export default function Reviews() {
           </button>
         </form>
 
-        {/* Approved reviews slider */}
+        {/* REVIEWS SLIDER */}
         <div className="reviews-slider-wrapper">
           <button
             type="button"
@@ -249,7 +249,7 @@ export default function Reviews() {
           </button>
         </div>
 
-        {/* Claim Discount CTA */}
+        {/* DISCOUNT CTA */}
         <div className="discount-cta">
           <p className="discount-text">
             Left us a review and received a special code?
@@ -264,7 +264,7 @@ export default function Reviews() {
         </div>
       </div>
 
-      {/* Discount Modal */}
+      {/* DISCOUNT MODAL */}
       {showDiscount && (
         <div className="discount-modal-backdrop">
           <div className="discount-modal">

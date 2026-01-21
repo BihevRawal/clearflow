@@ -1,0 +1,166 @@
+.admin-page {
+  padding:40px;
+  background:linear-gradient(135deg,#eef2ff,#f8fafc);
+  min-height:100vh;
+  font-family:Inter,system-ui;
+}
+
+.admin-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.admin-header h2 {
+  font-size:28px;
+  font-weight:700;
+}
+
+.admin-header button {
+  background:#2563eb;
+  color:white;
+  padding:10px 18px;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.job-card {
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  margin:18px 0;
+  box-shadow:0 15px 40px rgba(0,0,0,0.06);
+  transition:.2s;
+}
+
+.job-card:hover {
+  transform:translateY(-2px);
+}
+
+.job-card p {
+  margin:4px 0;
+  color:#334155;
+}
+
+.job-actions {
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+}
+
+.job-actions select {
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+
+.danger {
+  background:#ef4444;
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.slider {
+  position:fixed;
+  right:0;
+  top:0;
+  width:340px;
+  height:100vh;
+  background:white;
+  box-shadow:-5px 0 30px rgba(0,0,0,0.2);
+  padding:20px;
+  animation:slide .3s ease;
+  z-index:999;
+}
+
+@keyframes slide {
+  from { right:-350px }
+  to { right:0 }
+}
+
+.slider-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.member-row {
+  border-bottom:1px solid #eee;
+  padding:12px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.member-row b {
+  font-size:14px;
+}
+
+.member-row div {
+  font-size:12px;
+  color:#64748b;
+}
+
+.member-row button {
+  padding:6px 10px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:12px;
+}
+
+.modal-bg {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+
+.modal {
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  width:320px;
+}
+
+.modal h3 {
+  font-size:20px;
+  margin-bottom:12px;
+}
+
+.modal input,
+.modal select {
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+
+.modal button {
+  width:100%;
+  padding:10px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  border-radius:8px;
+  font-weight:600;
+  margin-top:8px;
+}
+
+.ghost {
+  background:white;
+  color:#333;
+  border:1px solid #ddd;
+}

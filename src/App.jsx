@@ -1,31 +1,23 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Services from "./components/Services";
-import Gallery from "./components/Gallery";
-import Book from "./components/Book";
-import Footer from "./components/Footer";
-import Offer from "./Offer";
-import Reviews from "./components/Reviews";
-import FloatingSocials from "./components/FloatingSocials";
-
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import WorkPortal from "./pages/WorkPortal";
+import AdminDashboard from "./pages/AdminDashboard";
+import Home from "./pages/Home"; // your main website
 
 export default function App() {
   return (
-    <div className="font-sans">
-      <Header />
-      <Offer/>
-      <main className="pt-24 space-y-24 bg-slate-50">
-        <Hero />
-        <About />
-        <Services />
-        <Gallery />
-        <Book />
-        <FloatingSocials/>
-        <Reviews />
-        <Footer />
-      </main>
-    </div>
-    
+    <Routes>
+
+      {/* PUBLIC */}
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+
+      {/* ADMIN */}
+      <Route path="/admin" element={<AdminDashboard />} />
+
+      {/* PROFESSIONAL */}
+      <Route path="/workportal" element={<WorkPortal />} />
+
+    </Routes>
   );
 }

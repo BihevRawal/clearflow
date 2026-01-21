@@ -5,64 +5,51 @@ export default async function handler(req, res) {
 
   const token = process.env.AIRTABLE_TOKEN;
   const baseId = process.env.AIRTABLE_BASE_ID;
-  const table = process.env.AIRTABLE_TABLE_NAME || "reviews";
+  const table = process.env.AIRTABLE_TABLE_NAME;
 
-  if (!token || !baseId) {
-    console.error("Missing Airtable env vars");
+  if (!token || !baseId || !table) {
     return res.status(500).json({ error: "Server not configured" });
   }
 
-  const body = req.body || {};
-  const rawCode = body.code;
+  const { code } = req.body || {};
 
-  if (!rawCode || typeof rawCode !== "string") {
+  if (!code || typeof code !== "string") {
     return res.status(400).json({ error: "Missing code" });
   }
 
-  // Normalise (we generated coupon_code in uppercase)
-  const code = rawCode.trim().toUpperCase();
+  const normalizedCode = code.trim().toUpperCase();
 
-  // Filter: approved = TRUE and coupon_code matches
-  const filterFormula = `AND({approved}=TRUE(), {coupon_code}='${code}')`;
+  const filterFormula = `AND({approved}=TRUE(), {coupon_code}='${normalizedCode}')`;
 
-  const url =
-    `https://api.airtable.com/v0/` +
-    `${baseId}/` +
-    `${encodeURIComponent(table)}` +
-    `?filterByFormula=${encodeURIComponent(filterFormula)}` +
-    `&maxRecords=1`;
+  const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(
+    table
+  )}?filterByFormula=${encodeURIComponent(filterFormula)}&maxRecords=1`;
 
   try {
     const response = await fetch(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Airtable error (check-discount):", data);
+      console.error("Airtable discount error:", data);
       return res.status(500).json({ error: "Airtable error" });
     }
 
-    const records = data.records || [];
-
-    if (records.length === 0) {
-      // No approved review with that code
+    if (!data.records || data.records.length === 0) {
       return res.status(200).json({
         valid: false,
-        message: "Code not found or not eligible. Please check and try again.",
+        message: "Code not found or not eligible",
       });
     }
 
-    // ✅ Valid code
     return res.status(200).json({
       valid: true,
-      message: "Code valid! You’ve unlocked 5% off your next service.",
+      message: "Code valid! You’ve unlocked 5% off.",
     });
   } catch (err) {
-    console.error("Server error (check-discount):", err);
+    console.error("Server error:", err);
     return res.status(500).json({ error: "Server error" });
   }
 }
